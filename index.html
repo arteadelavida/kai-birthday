@@ -126,12 +126,13 @@
 
     <div id="overlay-surat" class="overlay">
         <div id="card-final" class="card-final">
-            <h2>Goodbye teens, hello twenties</h2>
+            <h2>Happy Birthday</h2>
             
             <img src="img/foto.jpeg" class="foto-kalian" id="fotoKlik" onclick="munculLucu(event)" alt="Foto Khirani">
             <p style="font-size: 0.6rem; color: #999; margin-top: -5px;">(Coba klik fotonya!)</p>
             
             <div class="message-box">
+                <p>Goodbye teens, hello twenties<p>
                 <p>Happy birthday to my favorite person in the world, you're the best person that i could've ever ask for, and im so lucky that i could met you.</p>
                 <p>I wish you all the happiness in the world, hope you find what you looking for, and hope you live with no regrets, im so so soooooo happy that you're still right by my side. of all the things life could give, loving you are my favorite way to live.</p>
             </div>
@@ -158,7 +159,7 @@
         setInterval(createHeart, 400);
 
         function bukaSurat() {
-            alert("Warning: A very beautiful girl is detected opening this letter! 😍");
+            alert("Open the letter Gorg! 😍");
             lagu.play().catch(e => console.log("Musik jalan"));
             document.getElementById("ui-awal").style.opacity = "0";
             setTimeout(() => {
@@ -172,7 +173,7 @@
         }
 
         function munculLucu(e) {
-            const teks = ["Ciee cantik amat!", "I Love You ❤️", "Sehat selalu ya!", "Jangan cemberut!", "Kamu yang terbaik!", "Milik N nih! 😋"];
+            const teks = ["H-h-hi cantik...", "Love You hun ❤️", "Sehat selalu", "HIDUP MAHASISWA", "loploploplop", "my bini gwe 😋"];
             const randomTeks = teks[Math.floor(Math.random() * teks.length)];
             const span = document.createElement("span");
             span.id = "pesan-lucu";
