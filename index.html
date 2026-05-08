@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Khirani ❤️</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Monsieur+La+Doulaise&family=Courier+Prime&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#821717">
+
+    <style>
+        :root {
+            --warna-bg: #821717;
+            --warna-putih: #ffffff;
+            --warna-primary: #d64545;
+            --warna-accent: #ffa1a1;
+        }
+
+        body, html {
+            height: 100%; margin: 0; overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #821717 0%, #b8365a 50%, #821717 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            color: var(--warna-putih);
+            display: flex; justify-content: center; align-items: center;
+            touch-action: manipulation;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        * { box-sizing: border-box; }
+
+        .heart {
+            position: fixed; top: -50px; user-select: none; z-index: 1;
+            pointer-events: none; animation: fall linear forwards;
+        }
+        .heart img { width: 22px; height: auto; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
+
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+            animation: confettiFall 3s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            to {
+                transform: translateY(100vh) rotateX(720deg);
+                opacity: 0;
+            }
+        }
+
+        .container { 
+            text-align: center; display: flex; flex-direction: column; 
+            align-items: center; z-index: 10; width: 100%; padding: 20px;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .wrapper-surat {
+            width: 100%; max-width: 180px;
+            cursor: pointer; position: relative; z-index: 20;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+        }
+        .wrapper-surat:hover { 
+            transform: scale(1.15) rotate(-5deg); 
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.4));
+        }
+        .wrapper-surat:active {
+            transform: scale(0.95);
+        }
+
+        .surat-gambar {
+            width: 100%; height: auto;
+            animation: pulseAnim 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseAnim {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .text-area {
+            animation: fadeInDown 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .overlay {
+            display: none; position: fixed; top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: linear-gradient(135deg, rgba(130, 23, 23, 0.95) 0%, rgba(184, 54, 90, 0.95) 100%);
+            backdrop-filter: blur(4px);
+            z-index: 100; justify-content: center; align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* KARTU UTAMA */
+        .card-final {
+            display: none; background: linear-gradient(135deg, #ffffff 0%, #f8f0f0 100%);
+            color: #333; padding: 25px; 
+            border-radius: 25px; max-width: 360px; 
+            width: 90%; text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            opacity: 0; transform: translateY(50px) scale(0.8);
+            transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-height: 90vh; overflow-y: auto;
+            border: 2px solid rgba(255, 161, 161, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-final.muncul { 
+            opacity: 1; 
+            transform: translateY(0) scale(1);
+        }
+
+        .card-final h2 { 
+            font-family: 'Monsieur La Doulaise', cursive; 
+            color: #821717; font-size: 2.8rem; margin: 0 0 15px 0; 
+            line-height: 1.1;
+            animation: scaleInHeading 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+        }
+
+        @keyframes scaleInHeading {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .slider-container {
+            width: 90%; margin: 15px auto;
+            border-radius: 15px; border: 4px solid #821717;
+            overflow: hidden; position: relative;
+            aspect-ratio: 4/5;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(130, 23, 23, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideInLeft 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slider-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(130, 23, 23, 0.4);
+        }
+
+        .slider-wrapper {
+            display: flex;
+            width: 100%;
+            transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
+        }
+
+        .slider-wrapper img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+
+        .slider-wrapper img:hover {
+            filter: brightness(1.1);
+        }
+
+        /* PERBAIKAN PESAN AGAR TIDAK OVERFLOW */
+        .message-box { 
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.85rem; 
+            line-height: 1.6; 
+            color: #444; 
+            padding: 0 5px;
+            margin-bottom: 15px;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-box p { 
+            margin: 8px 0; 
+            width: 100%;
+            text-align: center;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .countdown-box {
+            margin: 20px auto; padding: 15px;
+            background: linear-gradient(135deg, #fdf2f2 0%, #fff5f5 100%);
+            border-radius: 12px;
+            border-left: 4px solid #821717;
+            border-right: 4px solid #d64545;
+            font-family: 'Courier Prime', monospace;
+            width: 95%;
+            box-shadow: 0 4px 15px rgba(130, 23, 23, 0.1);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .countdown-title {
+            font-size: 0.7rem; color: #821717;
+            margin-bottom: 8px; font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #timer, #days-count { 
+            font-size: 0.9rem; color: #333; font-weight: bold; 
+            display: block; margin-top: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .signature { 
+            font-family: 'Monsieur La Doulaise', cursive; 
+            font-size: 2.2rem; color: #821717; margin-top: 15px;
+            animation: fadeInUp 0.8s ease-out 0.7s both;
+        }
+        
+        .btn-back {
+            margin-top: 15px; 
+            background: linear-gradient(135deg, #821717 0%, #b8365a 100%);
+            color: white;
+            border: none; padding: 12px 25px; border-radius: 25px;
+            font-size: 0.85rem; font-weight: bold; cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(130, 23, 23, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(130, 23, 23, 0.4);
+            background: linear-gradient(135deg, #b8365a 0%, #821717 100%);
+        }
+
+        .btn-back:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(130, 23, 23, 0.3);
+        }
+
+        .btn-music {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #821717 0%, #b8365a 100%);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 50;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(130, 23, 23, 0.3);
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        .btn-music:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(130, 23, 23, 0.4);
+        }
+
+        .btn-music.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #pesan-lucu {
+            position: fixed; color: #821717; font-weight: bold;
+            font-size: 1rem; pointer-events: none; z-index: 1000;
+            animation: flyUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            text-shadow: 0 2px 8px rgba(255,255,255,0.7);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(130, 23, 23, 0.3);
+        }
+        @keyframes flyUp {
+            0% { 
+                transform: translateY(0) scale(1); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translateY(-80px) scale(1.1); 
+                opacity: 0; 
+            }
+        }
+
+        /* Responsive untuk mobile */
+        @media (max-width: 480px) {
+            .card-final h2 {
+                font-size: 2rem;
+            }
+            
+            .message-box {
+                font-size: 0.75rem;
+            }
+
+            .signature {
+                font-size: 1.8rem;
+            }
+
+            .btn-music {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="myLagu" loop src="musik.mp3"></audio>
+
+    <button class="btn-music" id="musicBtn" onclick="toggleMusic()" title="Toggle Music">🎵</button>
+
+    <div id="ui-awal" class="container">
+        <div class="wrapper-surat" onclick="bukaSurat()">
+            <img src="img/surat.png" class="surat-gambar" alt="Surat">
+        </div>
+        <div class="text-area" style="margin-top: 15px;">
+            <div style="font-weight: bold; font-size: 1.1rem;">💌 Looks like there's a letter</div>
+            <div style="font-size: 0.8rem; opacity: 0.7;">✨ Tap the letter to open</div>
+        </div>
+    </div>
+
+    <div id="overlay-surat" class="overlay">
+        <div id="card-final" class="card-final">
+            <h2>Goodbye teens,<br>hello twenties</h2>
+            
+            <div class="slider-container" onclick="munculLucu(event)">
+                <div class="slider-wrapper" id="slider">
+                    <img src="img/foto1.jpeg" alt="Foto 1">
+                    <img src="img/foto2.jpeg" alt="Foto 2">
+                    <img src="img/foto3.jpeg" alt="Foto 3">
+                    <img src="img/foto4.jpeg" alt="Foto 4">
+                    <img src="img/foto5.jpeg" alt="Foto 5">
+                </div>
+            </div>
+            
+            <div class="message-box">
+                <p>Happy birthday to my favorite person in the world, you're the best person that i could've ever ask for, and im so lucky that i could met you.</p>
+                <p>I wish you all the happiness in the world, hope you find what you looking for, and hope you live with no regrets, im so so soooooo happy that you're still right by my side. of all the things life could give, loving you are my favorite way to live.</p>
+            </div>
+
+            <div class="countdown-box">
+                <div class="countdown-title" id="timer-title">Counting down to your 20th:</div>
+                <div id="timer">00h 00m 00s</div>
+                <div class="countdown-title" style="margin-top: 10px; border-top: 1px dashed #ccc; padding-top: 5px;">Life Journey:</div>
+                <div id="days-count">You've lived for ... days</div>
+            </div>
+
+            <div class="signature">-Sincerely, your beloved N</div>
+            
+            <button class="btn-back" onclick="location.reload()">Back</button>
+        </div>
+    </div>
+
+    <script>
+        const lagu = document.getElementById("myLagu");
+        const slider = document.getElementById("slider");
+        const musicBtn = document.getElementById("musicBtn");
+        let currentSlide = 0;
+        let isMusicPlaying = false;
+
+        const tglLahirAsli = new Date(2006, 4, 9, 0, 0, 0); 
+        const targetUltah20 = new Date(2026, 4, 9, 0, 0, 0);
+
+        function updateTimer() {
+            const now = new Date();
+            const diffUltah = now - targetUltah20;
+            const timerEl = document.getElementById("timer");
+            const titleEl = document.getElementById("timer-title");
+
+            if (diffUltah < 0) {
+                const absDiff = Math.abs(diffUltah);
+                const h = Math.floor((absDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((absDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((absDiff % (1000 * 60)) / 1000);
+                timerEl.innerText = `${h}h ${m}m ${s}s`;
+            } else {
+                titleEl.innerText = "⏰ Time passed since your 20th began:";
+                const d = Math.floor(diffUltah / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diffUltah % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diffUltah % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diffUltah % (1000 * 60)) / 1000);
+                timerEl.innerText = `${d}d ${h}h ${m}m ${s}s`;
+            }
+
+            const diffLife = now - tglLahirAsli;
+            const totalDays = Math.floor(diffLife / (1000 * 60 * 60 * 24));
+            document.getElementById("days-count").innerText = `🎂 You've lived for ${totalDays} beautiful days`;
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '<img src="img/hati-asset.png">';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random() * 0.7 + 0.3;
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 400);
+
+        function createConfetti() {
+            const confettiColors = ['#821717', '#d64545', '#ffa1a1', '#ff6b9d', '#ffb3ba'];
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                confetti.style.width = Math.random() * 8 + 4 + 'px';
+                confetti.style.height = Math.random() * 8 + 4 + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0%';
+                confetti.style.opacity = Math.random() * 0.7 + 0.3;
+                confetti.style.animationDelay = i * 30 + 'ms';
+                confetti.style.animationDuration = Math.random() * 2 + 2.5 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => { confetti.remove(); }, 5000);
+            }
+        }
+
+        function startSlider() {
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % 5;
+                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }, 2000);
+        }
+
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                lagu.pause();
+                isMusicPlaying = false;
+                musicBtn.textContent = '🔇';
+            } else {
+                lagu.play().catch(e => console.log("Audio play failed"));
+                isMusicPlaying = true;
+                musicBtn.textContent = '🎵';
+            }
+        }
+
+        function bukaSurat() {
+            lagu.play().catch(e => console.log("Audio started"));
+            isMusicPlaying = true;
+            musicBtn.classList.add('show');
+            musicBtn.textContent = '🎵';
+
+            createConfetti();
+
+            document.getElementById("ui-awal").style.opacity = "0";
+            document.getElementById("ui-awal").style.transition = "opacity 0.5s ease-out";
+            setTimeout(() => {
+                document.getElementById("ui-awal").style.display = "none";
+                const overlay = document.getElementById("overlay-surat");
+                const card = document.getElementById("card-final");
+                overlay.style.display = "flex";
+                card.style.display = "block";
+                setTimeout(() => { 
+                    card.classList.add("muncul"); 
+                    startSlider();
+                    setInterval(updateTimer, 1000);
+                    updateTimer();
+                }, 50);
+            }, 500);
+        }
+
+        function munculLucu(e) {
+            const teks = [
+                "❤️ H-h-hi cantik...",
+                "💕 Love You hun ❤️",
+                "😂 Loploploplop",
+                "🥰 My bini gwe",
+                "😍 Gemesss!",
+                "💫 So pretty 😳",
+                "🎂 Happy birthday!",
+                "✨ You're amazing!",
+                "😘 Mmuah!"
+            ];
+            const randomTeks = teks[Math.floor(Math.random() * teks.length)];
+            const span = document.createElement("span");
+            span.id = "pesan-lucu";
+            span.innerText = randomTeks;
+            span.style.left = (e.pageX - 50) + "px";
+            span.style.top = (e.pageY - 30) + "px";
+            document.body.appendChild(span);
+            setTimeout(() => span.remove(), 1200);
+        }
+    </script>
+</body>
+</html>
