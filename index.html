@@ -180,6 +180,13 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
         }
 
+        .foto-hint {
+            font-size: 0.7rem;
+            color: #b5b5b5;
+            margin: 6px 0 12px;
+            font-style: italic;
+        }
+
         @keyframes slideInLeft {
             from {
                 opacity: 0;
@@ -389,7 +396,7 @@
 
     <div id="overlay-surat" class="overlay">
         <div id="card-final" class="card-final">
-            <h2>Happy Birthday</h2>
+            <h2>Goodbye teens,<br>hello twenties</h2>
             
             <div class="slider-container" onclick="munculLucu(event)">
                 <div class="slider-wrapper" id="slider">
@@ -400,10 +407,9 @@
                     <img src="img/foto5.jpeg" alt="Foto 5">
                 </div>
             </div>
+            <p class="foto-hint">Coba klik fotonya!</p>
             
             <div class="message-box">
-                <p>coba klik fotonya dong!!!<p>
-                <p>Goodbye teens, hello twenties<p>
                 <p>Happy birthday to my favorite person in the world, you're the best person that i could've ever ask for, and im so lucky that i could met you.</p>
                 <p>I wish you all the happiness in the world, hope you find what you looking for, and hope you live with no regrets, im so so soooooo happy that you're still right by my side. of all the things life could give, loving you are my favorite way to live.</p>
             </div>
@@ -534,15 +540,12 @@
 
         function munculLucu(e) {
             const teks = [
-                "❤️ H-h-hi cantik...",
-                "💕 Love You hun ❤️",
-                "😂 Loploploplop",
-                "🥰 My bini gwe",
-                "😍 Gemesss!",
-                "💫 So pretty 😳",
-                "🎂 Happy birthday!",
-                "✨ You're amazing!",
-                "😘 Mmuah!"
+                "H-h-hi cantik...",
+                "Love You hun ❤️",
+                "Loploploplop",
+                "My bini gwe",
+                "Happy birthday!",
+                "Mwaah!"
             ];
             const randomTeks = teks[Math.floor(Math.random() * teks.length)];
             const span = document.createElement("span");
