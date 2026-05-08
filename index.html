@@ -26,27 +26,22 @@
             position: fixed; top: -50px; user-select: none; z-index: 1;
             pointer-events: none; animation: fall linear forwards;
         }
-        .heart img { width: 25px; height: auto; }
+        .heart img { width: 22px; height: auto; }
         @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
 
         .container { 
             text-align: center; display: flex; flex-direction: column; 
             align-items: center; z-index: 10; width: 100%; padding: 20px;
-            transition: all 0.5s ease;
         }
 
-        /* UKURAN SURAT MUNGIL & DEFAULT (0deg) */
         .wrapper-surat {
-            width: 100%; max-width: 200px; height: auto;
-            display: flex; justify-content: center; align-items: center;
+            width: 100%; max-width: 180px; /* Diperkecil lagi */
             cursor: pointer; position: relative; z-index: 20;
             -webkit-tap-highlight-color: transparent;
         }
 
         .surat-gambar {
             width: 100%; height: auto;
-            transform: rotate(0deg);
-            filter: none;
             animation: pulseAnim 2.5s infinite ease-in-out;
         }
 
@@ -55,50 +50,63 @@
             50% { transform: scale(1.1); }
         }
 
-        .text-area { margin-top: 20px; }
-        .text-main { font-size: 1.2rem; font-weight: 700; }
-        .text-sub { font-size: 0.9rem; opacity: 0.7; animation: blink 1.5s infinite; }
-        @keyframes blink { 50% { opacity: 0.3; } }
-
+        /* LAYOUT PESAN DIKECILIN */
         .overlay {
             display: none; position: fixed; top: 0; left: 0; 
             width: 100%; height: 100%; 
-            background: rgba(130, 23, 23, 0.97);
+            background: rgba(130, 23, 23, 0.98);
             z-index: 100; justify-content: center; align-items: center;
         }
         
         .card-final {
-            display: none; background: white; color: #333; padding: 25px; 
-            border-radius: 20px; max-width: 400px; width: 88%; 
-            text-align: center; max-height: 85vh; overflow-y: auto;
-            opacity: 0;
-            transform: translateY(100px);
-            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: none; background: white; color: #333; padding: 20px; 
+            border-radius: 15px; max-width: 340px; /* Lebih ramping */
+            width: 85%; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            opacity: 0; transform: translateY(50px);
+            transition: all 0.7s ease-out;
         }
 
         .card-final.muncul { opacity: 1; transform: translateY(0); }
 
-        /* FONT SYMPHONY STYLE */
         .card-final h2 { 
             font-family: 'Monsieur La Doulaise', cursive; 
-            color: #821717; font-size: 3rem; margin: 0; font-weight: 400;
-            line-height: 1.2;
+            color: #821717; font-size: 2.5rem; margin: 0; 
         }
 
-        .foto-kalian { width: 100%; border-radius: 12px; margin: 15px 0; border: 3px solid #821717; }
-        
-        .message-box { font-size: 0.85rem; line-height: 1.6; color: #444; text-align: center; }
-        .message-box p { margin: 10px 0; }
+        .foto-kalian { 
+            width: 90%; border-radius: 10px; margin: 10px 0; 
+            border: 3px solid #821717; cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .foto-kalian:active { transform: scale(0.95); }
+
+        .message-box { 
+            font-size: 0.75rem; /* Font diperkecil biar ga padat */
+            line-height: 1.5; color: #444; 
+            padding: 0 10px;
+        }
         
         .signature { 
             font-family: 'Monsieur La Doulaise', cursive; 
-            font-size: 2.2rem; color: #821717; margin-top: 15px; 
+            font-size: 1.8rem; color: #821717; margin-top: 10px; 
         }
         
         .btn-back {
-            margin-top: 15px; background: #821717; color: white;
-            border: none; padding: 10px 20px; border-radius: 8px;
-            cursor: pointer; font-family: 'Montserrat'; font-weight: 700; font-size: 0.8rem;
+            margin-top: 10px; background: #821717; color: white;
+            border: none; padding: 8px 15px; border-radius: 20px;
+            font-size: 0.7rem; font-weight: bold;
+        }
+
+        /* PESAN LUCU MELAYANG */
+        #pesan-lucu {
+            position: absolute; color: #821717; font-weight: bold;
+            font-size: 0.8rem; pointer-events: none; z-index: 1000;
+            animation: flyUp 1s forwards;
+        }
+        @keyframes flyUp {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-50px); opacity: 0; }
         }
     </style>
 </head>
@@ -110,27 +118,27 @@
         <div class="wrapper-surat" onclick="bukaSurat()">
             <img src="img/surat.png" class="surat-gambar" alt="Surat">
         </div>
-        <div class="text-area">
-            <div class="text-main">Looks like there's a letter</div>
-            <div class="text-sub">Tap the letter to open</div>
+        <div class="text-area" style="margin-top: 15px; text-align: center;">
+            <div style="font-weight: bold; font-size: 1.1rem;">Looks like there's a letter</div>
+            <div style="font-size: 0.8rem; opacity: 0.7;">Tap the letter to open</div>
         </div>
     </div>
 
     <div id="overlay-surat" class="overlay">
         <div id="card-final" class="card-final">
-            <h2>Goodbye teens,<br>hello twenties</h2>
+            <h2>Goodbye teens, hello twenties</h2>
             
-            <img src="img/foto.jpeg" class="foto-kalian" alt="Foto Khirani">
+            <img src="img/foto.jpeg" class="foto-kalian" id="fotoKlik" onclick="munculLucu(event)" alt="Foto Khirani">
+            <p style="font-size: 0.6rem; color: #999; margin-top: -5px;">(Coba klik fotonya!)</p>
             
             <div class="message-box">
                 <p>Happy birthday to my favorite person in the world, you're the best person that i could've ever ask for, and im so lucky that i could met you.</p>
-                
                 <p>I wish you all the happiness in the world, hope you find what you looking for, and hope you live with no regrets, im so so soooooo happy that you're still right by my side. of all the things life could give, loving you are my favorite way to live.</p>
             </div>
 
             <div class="signature">-Sincerely, your beloved N</div>
             
-            <button class="btn-back" onclick="location.reload()">BACK</button>
+            <button class="btn-back" onclick="location.reload()">Back</button>
         </div>
     </div>
 
@@ -150,7 +158,8 @@
         setInterval(createHeart, 400);
 
         function bukaSurat() {
-            lagu.play().catch(e => console.log("Musik aktif"));
+            alert("Warning: A very beautiful girl is detected opening this letter! 😍");
+            lagu.play().catch(e => console.log("Musik jalan"));
             document.getElementById("ui-awal").style.opacity = "0";
             setTimeout(() => {
                 document.getElementById("ui-awal").style.display = "none";
@@ -160,6 +169,18 @@
                 card.style.display = "block";
                 setTimeout(() => { card.classList.add("muncul"); }, 50);
             }, 500);
+        }
+
+        function munculLucu(e) {
+            const teks = ["Ciee cantik amat!", "I Love You ❤️", "Sehat selalu ya!", "Jangan cemberut!", "Kamu yang terbaik!", "Milik N nih! 😋"];
+            const randomTeks = teks[Math.floor(Math.random() * teks.length)];
+            const span = document.createElement("span");
+            span.id = "pesan-lucu";
+            span.innerText = randomTeks;
+            span.style.left = e.pageX + "px";
+            span.style.top = e.pageY + "px";
+            document.body.appendChild(span);
+            setTimeout(() => span.remove(), 1000);
         }
     </script>
 </body>
