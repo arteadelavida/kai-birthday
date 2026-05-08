@@ -164,15 +164,20 @@
         }
 
         .slider-container {
-            width: 100%; margin: 0 -25px 8px -25px;
-            border-radius: 0; border: none;
+            width: 80%; margin: 0 auto 8px auto;
+            border-radius: 12px; border: 2px solid rgba(255, 107, 107, 0.5);
             overflow: hidden; position: relative;
-            aspect-ratio: 4/5;
+            aspect-ratio: auto;
+            max-height: 350px;
             cursor: pointer;
-            box-shadow: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: slideInLeft 0.8s ease-out 0.4s both;
-            width: calc(100% + 50px);
+        }
+
+        .slider-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
         }
 
         @keyframes slideInLeft {
@@ -384,7 +389,7 @@
 
     <div id="overlay-surat" class="overlay">
         <div id="card-final" class="card-final">
-            <h2>Goodbye teens,<br>hello twenties</h2>
+            <h2>Happy Birthday</h2>
             
             <div class="slider-container" onclick="munculLucu(event)">
                 <div class="slider-wrapper" id="slider">
@@ -397,6 +402,8 @@
             </div>
             
             <div class="message-box">
+                <p>coba klik fotonya dong!!!<p>
+                <p>Goodbye teens, hello twenties<p>
                 <p>Happy birthday to my favorite person in the world, you're the best person that i could've ever ask for, and im so lucky that i could met you.</p>
                 <p>I wish you all the happiness in the world, hope you find what you looking for, and hope you live with no regrets, im so so soooooo happy that you're still right by my side. of all the things life could give, loving you are my favorite way to live.</p>
             </div>
@@ -531,10 +538,11 @@
                 "💕 Love You hun ❤️",
                 "😂 Loploploplop",
                 "🥰 My bini gwe",
+                "😍 Gemesss!",
                 "💫 So pretty 😳",
                 "🎂 Happy birthday!",
                 "✨ You're amazing!",
-                "😘 Mwaah!"
+                "😘 Mmuah!"
             ];
             const randomTeks = teks[Math.floor(Math.random() * teks.length)];
             const span = document.createElement("span");
