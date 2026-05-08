@@ -35,19 +35,16 @@
             transition: all 0.5s ease;
         }
 
-        /* UKURAN SURAT DIBUAT LEBIH MUNGIL */
+        /* UKURAN SURAT MUNGIL & DEFAULT (0deg) */
         .wrapper-surat {
-            width: 100%; 
-            max-width: 200px; /* Ukuran mungil */
-            height: auto;
+            width: 100%; max-width: 200px; height: auto;
             display: flex; justify-content: center; align-items: center;
             cursor: pointer; position: relative; z-index: 20;
             -webkit-tap-highlight-color: transparent;
         }
 
         .surat-gambar {
-            width: 100%; 
-            height: auto;
+            width: 100%; height: auto;
             transform: rotate(0deg);
             filter: none;
             animation: pulseAnim 2.5s infinite ease-in-out;
@@ -55,7 +52,7 @@
 
         @keyframes pulseAnim {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); } /* Denyut sedikit lebih kelihatan */
+            50% { transform: scale(1.1); }
         }
 
         .text-area { margin-top: 20px; }
@@ -66,14 +63,14 @@
         .overlay {
             display: none; position: fixed; top: 0; left: 0; 
             width: 100%; height: 100%; 
-            background: rgba(130, 23, 23, 0.95);
+            background: rgba(130, 23, 23, 0.97);
             z-index: 100; justify-content: center; align-items: center;
         }
         
         .card-final {
-            display: none; background: white; color: #333; padding: 30px; 
-            border-radius: 20px; max-width: 380px; width: 85%; 
-            text-align: center;
+            display: none; background: white; color: #333; padding: 25px; 
+            border-radius: 20px; max-width: 400px; width: 88%; 
+            text-align: center; max-height: 85vh; overflow-y: auto;
             opacity: 0;
             transform: translateY(100px);
             transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -81,17 +78,27 @@
 
         .card-final.muncul { opacity: 1; transform: translateY(0); }
 
+        /* FONT SYMPHONY STYLE */
         .card-final h2 { 
             font-family: 'Monsieur La Doulaise', cursive; 
-            color: #821717; font-size: 3.5rem; margin: 0; font-weight: 400;
+            color: #821717; font-size: 3rem; margin: 0; font-weight: 400;
+            line-height: 1.2;
         }
 
-        .foto-kalian { width: 100%; border-radius: 12px; margin: 15px 0; border: 4px solid #821717; }
+        .foto-kalian { width: 100%; border-radius: 12px; margin: 15px 0; border: 3px solid #821717; }
+        
+        .message-box { font-size: 0.85rem; line-height: 1.6; color: #444; text-align: center; }
+        .message-box p { margin: 10px 0; }
+        
+        .signature { 
+            font-family: 'Monsieur La Doulaise', cursive; 
+            font-size: 2.2rem; color: #821717; margin-top: 15px; 
+        }
         
         .btn-back {
             margin-top: 15px; background: #821717; color: white;
             border: none; padding: 10px 20px; border-radius: 8px;
-            cursor: pointer; font-family: 'Montserrat'; font-weight: 700;
+            cursor: pointer; font-family: 'Montserrat'; font-weight: 700; font-size: 0.8rem;
         }
     </style>
 </head>
@@ -111,9 +118,18 @@
 
     <div id="overlay-surat" class="overlay">
         <div id="card-final" class="card-final">
-            <h2>Happy Birthday!</h2>
-            <img src="img/foto.jpeg" class="foto-kalian" alt="Foto">
-            <p><b>Happy Birthday Khirani!</b> ❤️</p>
+            <h2>Goodbye teens,<br>hello twenties</h2>
+            
+            <img src="img/foto.jpeg" class="foto-kalian" alt="Foto Khirani">
+            
+            <div class="message-box">
+                <p>Happy birthday to my favorite person in the world, you're the best person that i could've ever ask for, and im so lucky that i could met you.</p>
+                
+                <p>I wish you all the happiness in the world, hope you find what you looking for, and hope you live with no regrets, im so so soooooo happy that you're still right by my side. of all the things life could give, loving you are my favorite way to live.</p>
+            </div>
+
+            <div class="signature">-Sincerely, your beloved N</div>
+            
             <button class="btn-back" onclick="location.reload()">BACK</button>
         </div>
     </div>
@@ -134,7 +150,7 @@
         setInterval(createHeart, 400);
 
         function bukaSurat() {
-            lagu.play().catch(e => console.log("Musik butuh klik"));
+            lagu.play().catch(e => console.log("Musik aktif"));
             document.getElementById("ui-awal").style.opacity = "0";
             setTimeout(() => {
                 document.getElementById("ui-awal").style.display = "none";
