@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Khirani ❤️</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --warna-bg: #821717;
+            --warna-putih: #ffffff;
+        }
+
+        body, html {
+            height: 100%; margin: 0; overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--warna-bg);
+            color: var(--warna-putih);
+            display: flex; justify-content: center; align-items: center;
+            touch-action: manipulation;
+        }
+
+        .heart {
+            position: fixed; top: -50px; user-select: none; z-index: 1;
+            pointer-events: none; animation: fall linear forwards;
+        }
+        .heart img { width: 25px; height: auto; }
+        @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
+
+        .container { 
+            text-align: center; display: flex; flex-direction: column; 
+            align-items: center; z-index: 10; width: 100%; padding: 20px;
+            transition: all 0.5s ease;
+        }
+
+        /* UKURAN SURAT DIBUAT LEBIH MUNGIL */
+        .wrapper-surat {
+            width: 100%; 
+            max-width: 200px; /* Ukuran mungil */
+            height: auto;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; position: relative; z-index: 20;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .surat-gambar {
+            width: 100%; 
+            height: auto;
+            transform: rotate(0deg);
+            filter: none;
+            animation: pulseAnim 2.5s infinite ease-in-out;
+        }
+
+        @keyframes pulseAnim {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); } /* Denyut sedikit lebih kelihatan */
+        }
+
+        .text-area { margin-top: 20px; }
+        .text-main { font-size: 1.2rem; font-weight: 700; }
+        .text-sub { font-size: 0.9rem; opacity: 0.7; animation: blink 1.5s infinite; }
+        @keyframes blink { 50% { opacity: 0.3; } }
+
+        .overlay {
+            display: none; position: fixed; top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(130, 23, 23, 0.95);
+            z-index: 100; justify-content: center; align-items: center;
+        }
+        
+        .card-final {
+            display: none; background: white; color: #333; padding: 30px; 
+            border-radius: 20px; max-width: 380px; width: 85%; 
+            text-align: center;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-final.muncul { opacity: 1; transform: translateY(0); }
+
+        .card-final h2 { 
+            font-family: 'Monsieur La Doulaise', cursive; 
+            color: #821717; font-size: 3.5rem; margin: 0; font-weight: 400;
+        }
+
+        .foto-kalian { width: 100%; border-radius: 12px; margin: 15px 0; border: 4px solid #821717; }
+        
+        .btn-back {
+            margin-top: 15px; background: #821717; color: white;
+            border: none; padding: 10px 20px; border-radius: 8px;
+            cursor: pointer; font-family: 'Montserrat'; font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="myLagu" loop src="musik.mp3"></audio>
+
+    <div id="ui-awal" class="container">
+        <div class="wrapper-surat" onclick="bukaSurat()">
+            <img src="img/surat.png" class="surat-gambar" alt="Surat">
+        </div>
+        <div class="text-area">
+            <div class="text-main">Looks like there's a letter</div>
+            <div class="text-sub">Tap the letter to open</div>
+        </div>
+    </div>
+
+    <div id="overlay-surat" class="overlay">
+        <div id="card-final" class="card-final">
+            <h2>Happy Birthday!</h2>
+            <img src="img/foto.jpeg" class="foto-kalian" alt="Foto">
+            <p><b>Happy Birthday Khirani!</b> ❤️</p>
+            <button class="btn-back" onclick="location.reload()">BACK</button>
+        </div>
+    </div>
+
+    <script>
+        const lagu = document.getElementById("myLagu");
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '<img src="img/hati-asset.png">';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random() * 0.7 + 0.3;
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 400);
+
+        function bukaSurat() {
+            lagu.play().catch(e => console.log("Musik butuh klik"));
+            document.getElementById("ui-awal").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("ui-awal").style.display = "none";
+                const overlay = document.getElementById("overlay-surat");
+                const card = document.getElementById("card-final");
+                overlay.style.display = "flex";
+                card.style.display = "block";
+                setTimeout(() => { card.classList.add("muncul"); }, 50);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
